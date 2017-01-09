@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="../JQueryDemo/js/jquery_3.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            text-decoration: none;
+            height: 260px;
+        }
+        #content{
+            width: 80%;
+            margin: 150px auto;
+            overflow: hidden;
+            /*background: red;*/
+        }
+        li{
+            float: left;
+            /*width: 102px;*/
+            overflow: hidden;
+        }
+        li a{
+            width: 275px;
+            display: block;
+            margin-left: -118px;
+        }
+        #li_last{
+            float: left;
+        }
+        #li_one,#li_one a{
+            margin-left: 0px;
+            /*width: 400px;*/
+        }
+
+    </style>
+    <script type="text/javascript" language="JavaScript">
+        var originalWidth;      //平分状态下的li的宽度
+        var selectAvarige;      //选中一个后,其他的li的平均宽度
+        var aOriginalAvarige;   //平分状态下的a标签的宽度
+        var aOriginalDeviation; //平分状态下a标签的偏移
+        var aSelectAvarige;     //选中一个后,其他的a标签的宽度
+        var aSelectDeviation;   //选中一个后,其他的a标签的偏移量
+        $(function () {
+            $("#content").css("width",function () {
+                return parseInt($(this).width());
+            });
+//            $(window).resize(function () {
+//                alert($(this).width());
+//            })
+            var content = $("#content");
+            var li = $("li");
+            var a = li.children();
+            var arr = $("ul").children();
+            var len = $("#content").width();
+            len = len/7;
+            originalWidth = parseInt(len);
+            selectAvarige = parseInt((content.width()-400)/6);
+            aOriginalAvarige = parseInt(content.width()*(270/1105));
+            aOriginalDeviation = -parseInt((content.width()*(113/1105)));
+            aSelectAvarige = parseInt(content.width()*(265/1105));
+            aSelectDeviation = -parseInt((content.width()*(145/1105)));
+            li.css("width",function () {
+                return originalWidth;
+            });
+            $(a).css({"width":aOriginalAvarige,"marginLeft":aOriginalDeviation});
+            li.on("mouseout","a",function () {
+                for(var i = 0;i<arr.length;i++){
+                    var jqLi = jQuery(arr[i]);
+                    jqLi.stop().animate({"width":originalWidth},300)&&$(jqLi).children().stop().animate({"width":aOriginalAvarige,"marginLeft":aOriginalDeviation},300);
+                }
+            });
+            li.on("mouseenter","a",function (e) {
+                $(this).stop().animate({"width":"400px","marginLeft":"0px"},300)&&
+                $(this).parent().stop().animate({"width":"400px"},300);
+                var index = $(this).parent().index();;
+                for (var i =0;i<arr.length;i++){
+                    if (i!=index){
+                        $(arr[i]).stop().animate({"width":selectAvarige},300);
+                        $(arr[i]).children().stop().animate({"width":aSelectAvarige,"marginLeft":aSelectDeviation},300);
+                    }
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="content">
+        <ul>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150422_ifold1.jpg) no-repeat;">
+                </a>
+            </li>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold2.jpg)">
+                </a>
+            </li>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold3.jpg)">
+                </a>
+            </li>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold4.jpg)">
+                </a>
+            </li>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold5.jpg)">
+                </a>
+            </li>
+            <li>
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold6.jpg)">
+                </a>
+            </li>
+            <li id="li_last">
+                <a href="#" style="background: url(http://img.elongstatic.com/index/ifold/20150120_ifold7.jpg)">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
