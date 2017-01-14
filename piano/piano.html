@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../JQueryDemo/js/jquery_mini_2.2.4.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        var Aindex = 0;
+        var Bindex = 0;
+        var Cindex = 0;
+        var Dindex = 0;
+        var Eindex = 0;
+        var Findex = 0;
+        var Gindex = 0;
+        function keydown(e) {
+            var keynum;
+            if(window.event) // IEa
+            {
+                keynum = e.keyCode
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                keynum = e.which
+            }
+            switch (keynum){
+                case 65:
+                    Aindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Aindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/C.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 83:
+                    Bindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Bindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/D.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 68:
+                    Cindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Cindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/E.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 70:
+                    Dindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Dindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/F.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 71:
+                    Eindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Eindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/G.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 72:
+                    Findex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Findex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/A.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+                case 74:
+                    Gindex++;
+                    var audio = document.createElement("AUDIO");
+                    if (Gindex>=2){
+                        audio = undefined;
+                    }else {
+                        audio.src = "钢琴琴键音/music/B.mp3";
+                        audio.play();
+                        if (audio.ended==true&&audio){
+                            audio = undefined;
+                        }
+                    }
+                    break;
+            }
+        }
+        function keyup(e) {
+            Aindex = 0;
+            Bindex = 0;
+            Cindex = 0;
+            Dindex = 0;
+            Eindex = 0;
+            Findex = 0;
+            Gindex = 0;
+        }
+    </script>
+</head>
+<body onkeydown="keydown(event)" onkeyup="keyup(event)">
+    <audio id="audio">
+        <source type="audio/mpeg" src="">
+    </audio>
+</body>
+</html>
